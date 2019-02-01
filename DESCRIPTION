@@ -1,0 +1,11 @@
+Package: WishartMoment
+Type: Package
+Title: Calculate in symbolic form the moments of a Wishart distribution
+Version: 0.1.0
+Author: Timothy Mak
+Maintainer: Timothy Mak <timmak@yahoo.com>
+Description: This uses a brute force approach to find the higher moments of a Wishart distribution based on moments of multivariate Normal.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
