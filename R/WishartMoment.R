@@ -50,7 +50,7 @@
 #'
 #'
 WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
-                          Sigma=NULL, p=length(p), p.symbol="p^") {
+                          Sigma=NULL, p=length(input), p.symbol="p^") {
 
   # constants <- c("p", "a", "m", "n")
   # cons <- primes[1:length(constants)]
