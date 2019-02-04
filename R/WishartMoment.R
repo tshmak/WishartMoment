@@ -12,6 +12,8 @@
 #' matrix with row and column names corresponding to the variable names. The entries should
 #' be either 0, 1, or a prime number. Equal prime number will constrain the entries to be
 #' the same.
+#' @param p The parameter \eqn{p} in the Wishart distribution. The result should be the same if \eqn{p} >= \code{length(input)},
+#' although the time taken may be much longer.
 #' @param p.symbol The name of the parameter to denote the number of observations
 #'
 #' @details Assume a,b,c are multivariate Normally-distributed vectors with
@@ -48,7 +50,7 @@
 #'
 #'
 WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
-                          Sigma=NULL, p.symbol="p^") {
+                          Sigma=NULL, p=length(p), p.symbol="p^") {
 
   # constants <- c("p", "a", "m", "n")
   # cons <- primes[1:length(constants)]
@@ -65,7 +67,6 @@ WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
   Allpairs <- allpairs(1:(npairs*2)) # This gives all possible split of 1:(npairs*2) by pairs.
   index <- getIndex(pairs, Sigma) # Find the index of pairs given Sigma
   colnames(index) <- pairs
-  p <- npairs
 
   # This is the main engine for enumerating and tallying the possibilities
   index.matrix <- matrix(1, 2, npairs) # Initialization

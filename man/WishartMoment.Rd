@@ -5,7 +5,7 @@
 \title{Function to derive the higher moments of a Wishart distribution symbolically}
 \usage{
 WishartMoment(input, Diag1 = TRUE, IdentityMatrix = FALSE,
-  Sigma = NULL, p.symbol = "p^")
+  Sigma = NULL, p = length(p), p.symbol = "p^")
 }
 \arguments{
 \item{input}{For \eqn{E(r_{ab}r_{bc})}{E(r_{ab}*r_{bc})}, for example, type \code{c("ab", "bc")}. See
@@ -20,6 +20,9 @@ matrix with row and column names corresponding to the variable names. The entrie
 be either 0, 1, or a prime number. Equal prime number will constrain the entries to be
 the same.}
 
+\item{p}{The parameter \eqn{p} in the Wishart distribution. The result should be the same if \eqn{p} >= \code{length(input)},
+although the time taken may be much longer.}
+
 \item{p.symbol}{The name of the parameter to denote the number of observations}
 }
 \value{
@@ -33,7 +36,8 @@ means \eqn{\sigma_{ac}p+\sigma_{ab}\sigma_{bc}(p+p^2)}{\sigma_{ac}*p+\sigma_{ac}
 }
 \description{
 If \eqn{r_{ab}, r_{bc}, etc.} have a Wishart distribution, this program
-calculates \eqn{E(r_{ab}r_{bc}\ldots)}{E(r_{ab}*r_{bc}*\ldots )} symbolically.
+calculates \eqn{E(r_{ab}r_{bc}\ldots)}{E(r_{ab}*r_{bc}*\ldots )} symbolically. Currently,
+this can only calculate up to the 6th order.
 }
 \details{
 Assume a,b,c are multivariate Normally-distributed vectors with
