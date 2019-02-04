@@ -4,7 +4,7 @@
 \alias{WishartMoment}
 \title{Function to derive the higher moments of a Wishart distribution symbolically}
 \usage{
-WishartMoment(input, Diag1 = TRUE, IdentityMatrix = FALSE,
+WishartMoment(input, Diag1 = FALSE, IdentityMatrix = FALSE,
   Sigma = NULL, p = length(input), p.symbol = "p^")
 }
 \arguments{

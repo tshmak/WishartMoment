@@ -49,7 +49,7 @@
 #' means \eqn{\sigma_{ac}p+\sigma_{ab}\sigma_{bc}(p+p^2)}{\sigma_{ac}*p+\sigma_{ac}*\sigma_{bc}*(p+p^2)}.
 #'
 #'
-WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
+WishartMoment <- function(input, Diag1=FALSE, IdentityMatrix=FALSE,
                           Sigma=NULL, p=length(input), p.symbol="p^") {
 
   # constants <- c("p", "a", "m", "n")
