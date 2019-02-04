@@ -98,10 +98,11 @@ WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
   }
 
   list.of.tables <- list()
-  for(i in 1:npairs) {
+  for(i in 1:max(Table$unique)) {
     # i <- 1
     ss <- subset(Table, unique == i)
-    if(i == 1) pp <- p else pp <- pp * (p-i+1)
+    # if(i == 1) pp <- p else pp <- pp * (p-i+1)
+    if(i == 1) pp <- 1 else pp <- pp * (p-i+1) # New trick to speed up computation.
     t <- table(ss$type) / pp
     f <- c(rep(0, npairs - i), fun(i))
     m <- outer(f, t)

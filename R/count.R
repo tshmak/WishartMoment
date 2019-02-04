@@ -11,7 +11,8 @@ count <- function(index.matrix, allpairs, index, Sigma,
   s <- index.matrix # Short hand
 
   if(is.null(tally)) {
-    tally <- rep(NA, p^ncol(s) * length(allpairs))
+    # tally <- rep(NA, p^ncol(s) * length(allpairs))
+    tally <- rep(NA, p^(ncol(s)-1) * length(allpairs)) # New trick
   }
   if(col < ncol(s)) {
     for(a in 1:p) {
@@ -21,6 +22,7 @@ count <- function(index.matrix, allpairs, index, Sigma,
                       row=row, col=col+1, tally=tally, p=p)
       row <- result$row
       tally <- result$tally
+      if(col == 1) break # New trick
     }
   } else {
     for(a in 1:p) {
