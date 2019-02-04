@@ -41,12 +41,12 @@
 #' WishartMoment(c("ab", "bb", "bc"))
 #'
 #' @return A matrix of counts corresponding to the number of particular terms. For example,
-#' \tabular{rrr}{
-#'  \tab   ac \tab ab*bc \cr
-#' p^2 \tab  0  \tab   1 \cr
-#' p^1 \tab  1 \tab    1
+#' \tabular{rrrr}{
+#'  \tab   1 \tab ac \tab ab*bc \cr
+#' p^2 \tab  0 \tab 0  \tab   1 \cr
+#' p^1 \tab 1 \tab 1 \tab    1
 #' }
-#' means \eqn{\sigma_{ac}p+\sigma_{ab}\sigma_{bc}(p+p^2)}{\sigma_{ac}*p+\sigma_{ac}*\sigma_{bc}*(p+p^2)}.
+#' means \eqn{p + \sigma_{ac}p+\sigma_{ab}\sigma_{bc}(p+p^2)}{p+\sigma_{ac}*p+\sigma_{ab}*\sigma_{bc}*(p+p^2)}.
 #'
 #'
 WishartMoment <- function(input, Diag1=FALSE, IdentityMatrix=FALSE,
