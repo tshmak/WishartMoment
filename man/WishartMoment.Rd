@@ -4,8 +4,8 @@
 \alias{WishartMoment}
 \title{Function to derive the higher moments of a Wishart distribution symbolically}
 \usage{
-WishartMoment(input, Diag1 = FALSE, IdentityMatrix = FALSE,
-  Sigma = NULL, p = length(p), p.symbol = "p^")
+WishartMoment(input, Diag1 = TRUE, IdentityMatrix = FALSE,
+  Sigma = NULL, p = length(input), p.symbol = "p^")
 }
 \arguments{
 \item{input}{For \eqn{E(r_{ab}r_{bc})}{E(r_{ab}*r_{bc})}, for example, type \code{c("ab", "bc")}. See
