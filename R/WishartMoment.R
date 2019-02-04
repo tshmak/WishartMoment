@@ -74,6 +74,7 @@ WishartMoment <- function(input, Diag1=TRUE, IdentityMatrix=FALSE,
 
   Table <- data.frame(type=res$tally)
   ff <- as.data.frame(factorial_design(npairs, levels=1:p) %x% matrix(1, length(Allpairs), 1))
+  ff <- ff[ff[,1] == 1, ,drop=FALSE] # New trick
   colnames(ff) <- letters[1:npairs]
   Table <- cbind(Table, ff)
   Table$unique <- sapply(1:nrow(Table), function(i) length(unique(as.matrix(ff)[i,])))
