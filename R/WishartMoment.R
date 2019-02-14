@@ -74,30 +74,14 @@ WishartMoment <- function(input, Diag1=FALSE, IdentityMatrix=FALSE,
   res <- count(index.matrix = index.matrix, allpairs = Allpairs, index=index, Sigma=Sigma, p=p)
 
   Table <- data.frame(type=res$tally)
-  ff <- as.data.frame(factorial_design(npairs, levels=1:p) %x% matrix(1, length(Allpairs), 1))
-  ff <- ff[ff[,1] == 1, ,drop=FALSE] # New trick
-  colnames(ff) <- letters[1:npairs]
-  Table <- cbind(Table, ff)
-  Table$unique <- sapply(1:nrow(Table), function(i) length(unique(as.matrix(ff)[i,])))
 
-  fun <- function(N) {
-    # This is for calculating the coefficients in the expansion p(p-1)(p-2)(p-3)...
-    stopifnot(N >= 1)
-    if(N == 1) return(1)
-    n <- N - 1
-    n.required <- function(v, c) {
-      cc <- combn(v, c)
-      s <- apply(cc, 2, prod)
-      return(sum(s))
-    }
-    a <- -(1:n)
-    result <- rep(NA, N)
-    result[1] <- 1
-    for(i in 1:n) {
-      result[i+1] <- n.required(a, i)
-    }
-    return(result)
-  }
+  ff <- factorial_design(npairs-1, levels=1:p) %x% matrix(1, length(Allpairs), 1)
+  ff <- cbind(1, ff)
+
+  colnames(ff) <- letters[1:npairs]
+  # Table <- cbind(Table, ff)
+  Table$unique <- sapply(1:nrow(Table), function(i) length(unique(ff[i,])))
+
 
   list.of.tables <- list()
   for(i in 1:max(Table$unique)) {
@@ -106,7 +90,7 @@ WishartMoment <- function(input, Diag1=FALSE, IdentityMatrix=FALSE,
     # if(i == 1) pp <- p else pp <- pp * (p-i+1)
     if(i == 1) pp <- 1 else pp <- pp * (p-i+1) # New trick to speed up computation.
     t <- table(ss$type) / pp
-    f <- c(rep(0, npairs - i), fun(i))
+    f <- c(rep(0, npairs - i), coeffun(i))
     m <- outer(f, t)
     rownames(m) <- paste0(p.symbol, npairs:1)
     # class(m) <- "CountTable"
